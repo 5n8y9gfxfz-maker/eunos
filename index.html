@@ -23,14 +23,37 @@
   li { margin: 6px 0; }
   footer { border-top: 1px solid var(--line); margin-top: 56px; padding-top: 16px; color: var(--muted); font-size: 14px; }
   a { color: var(--accent); }
+  .ask { display: flex; gap: 8px; flex-wrap: wrap; }
+  .ask input[type=email] { flex: 1 1 240px; font: inherit; padding: 11px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--fg); }
+  .ask button { border: 0; font: inherit; font-weight: 600; cursor: pointer; }
+  .ask button:disabled { opacity: .6; }
+  .hp { position: absolute; left: -9999px; }
 </style>
 </head>
 <body>
 <main>
   <header><img src="mark.svg" alt=""><h1>Eunos</h1></header>
   <p class="lede">A web browser for Mac and iPhone that is as light as we can make it and as private as a browser can be. Built on WebKit, the engine behind Safari.</p>
-  <a class="btn" href="https://github.com/5n8y9gfxfz-maker/eunos/releases/latest/download/Eunos.dmg">Download for Mac</a>
-  <p class="note">macOS 14 or later, Apple silicon. Free. No account needed. <a href="https://github.com/5n8y9gfxfz-maker/eunos/releases">All releases</a></p>
+  <form id="ask" class="ask">
+    <input type="email" name="email" required autocomplete="email" placeholder="you@example.com" aria-label="Email address">
+    <input type="text" name="website" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+    <button class="btn" type="submit">Get the preview</button>
+  </form>
+  <p class="note" id="msg">Mac preview, macOS 14 or later, Apple silicon. We email you the download link by hand. Your address is used for that and nothing else.</p>
+  <script>
+  // Paste the Google Apps Script web app URL here (see gate.gs).
+  const GATE = "";
+  const f = document.getElementById("ask"), m = document.getElementById("msg");
+  f.addEventListener("submit", async e => {
+    e.preventDefault();
+    if (f.website.value) return;
+    const b = f.querySelector("button"); b.disabled = true;
+    try {
+      await fetch(GATE, { method: "POST", mode: "no-cors", body: new URLSearchParams({ email: f.email.value.trim() }) });
+      f.hidden = true; m.textContent = "Thanks. The download link will reach " + f.email.value.trim() + " soon.";
+    } catch { b.disabled = false; m.textContent = "That didn't send. Try again in a moment."; }
+  });
+  </script>
 
   <h2>Private by default</h2>
   <ul>
@@ -48,9 +71,9 @@
   </ul>
 
   <h2>Passkeys</h2>
-  <p>Eunos signs in with passkeys stored in iCloud Keychain through the system sheet, the same way Safari does.</p>
+  <p>Passkey sign-in through iCloud Keychain, the same way Safari does it, is coming in a later preview.</p>
 
-  <footer>Eunos is based on Search by Office Commun (MIT). Contact via <a href="https://github.com/5n8y9gfxfz-maker/eunos/issues">GitHub issues</a>.</footer>
+  <footer>Eunos is based on Search by Office Commun (MIT). </footer>
 </main>
 </body>
 </html>
