@@ -49,7 +49,9 @@
     if (f.website.value) return;
     const b = f.querySelector("button"); b.disabled = true;
     try {
-      await fetch(GATE, { method: "POST", mode: "no-cors", body: new URLSearchParams({ email: f.email.value.trim() }) });
+      const r = await fetch(GATE, { method: "POST", body: new URLSearchParams({ email: f.email.value.trim() }) });
+      const t = await r.text();
+      if (t !== "ok") { b.disabled = false; m.textContent = t === "bad" ? "That address doesn't look right." : "That didn't send. Try again in a moment."; return; }
       f.hidden = true; m.textContent = "Thanks. The download link will reach " + f.email.value.trim() + " soon.";
     } catch { b.disabled = false; m.textContent = "That didn't send. Try again in a moment."; }
   });
