@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eunos</title>
+<meta name="description" content="Eunos is a light, private WebKit browser for Mac and iPhone. No tracking, no telemetry, no account.">
+<link rel="icon" href="mark.svg" type="image/svg+xml">
+<style>
+  :root { --bg: #fdfcf8; --fg: #1c2430; --muted: #5b6472; --line: #e6e3da; --accent: #0a6fb0; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #111418; --fg: #eef1f5; --muted: #9aa4b2; --line: #262b33; --accent: #4cb8f0; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.55 -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; }
+  main { max-width: 680px; margin: 0 auto; padding: 64px 16px 48px; }
+  header { display: flex; align-items: center; gap: 16px; }
+  header img { width: 64px; height: 64px; }
+  h1 { font-size: 40px; margin: 0; letter-spacing: -0.02em; }
+  .lede { font-size: 21px; color: var(--muted); margin: 20px 0 28px; }
+  .btn { display: inline-block; background: var(--accent); color: #fff; text-decoration: none; padding: 12px 22px; border-radius: 10px; font-weight: 600; }
+  .note { color: var(--muted); font-size: 14px; margin-top: 10px; }
+  h2 { font-size: 20px; margin: 44px 0 8px; }
+  ul { padding-left: 20px; margin: 0; }
+  li { margin: 6px 0; }
+  footer { border-top: 1px solid var(--line); margin-top: 56px; padding-top: 16px; color: var(--muted); font-size: 14px; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <header><img src="mark.svg" alt=""><h1>Eunos</h1></header>
+  <p class="lede">A web browser for Mac and iPhone that is as light as we can make it and as private as a browser can be. Built on WebKit, the engine behind Safari.</p>
+  <a class="btn" href="https://github.com/5n8y9gfxfz-maker/eunos/releases/latest/download/Eunos.dmg">Download for Mac</a>
+  <p class="note">macOS 14 or later, Apple silicon. Free. No account needed. <a href="https://github.com/5n8y9gfxfz-maker/eunos/releases">All releases</a></p>
+
+  <h2>Private by default</h2>
+  <ul>
+    <li>No telemetry, no analytics, no crash reports. Eunos never phones home.</li>
+    <li>Trackers and fingerprinting blocked on every page; each tab shows how many it stopped.</li>
+    <li>Non-tracking search (DuckDuckGo) by default.</li>
+    <li>Profiles keep cookies and history apart; private tabs never touch disk and lock with Touch ID or Face ID.</li>
+    <li>Optional sync goes only to your own iCloud, end-to-end encrypted.</li>
+  </ul>
+
+  <h2>Light</h2>
+  <ul>
+    <li>Idle tabs are offloaded from memory and wake when you return.</li>
+    <li>No background helpers, no polling, a small app.</li>
+  </ul>
+
+  <h2>Passkeys</h2>
+  <p>Eunos signs in with passkeys stored in iCloud Keychain through the system sheet, the same way Safari does.</p>
+
+  <footer>Eunos is based on Search by Office Commun (MIT). Contact via <a href="https://github.com/5n8y9gfxfz-maker/eunos/issues">GitHub issues</a>.</footer>
+</main>
+</body>
+</html>
